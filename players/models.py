@@ -21,14 +21,14 @@ class EquipmentType(models.Model):
 class Player(AbstractUser):
     level = models.IntegerField(default=1)
     power = models.IntegerField(default=0)
-    race = models.ForeignKey(Race, on_delete=models.CASCADE)
+    race = models.ForeignKey(Race, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
         verbose_name = "player"
         verbose_name_plural = "players"
 
     def __str__(self):
-        return (f"Player: {self.username}, race:{self.race.name}, "
+        return (f"Player: {self.username}, "
                 f"level: {self.level}, power: {self.power}")
 
 
@@ -43,7 +43,7 @@ class Equipment(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name}({self.type.type}): {self.description}"
+        return f"{self.name}: {self.description}"
 
 
 

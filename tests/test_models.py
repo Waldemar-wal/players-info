@@ -39,7 +39,7 @@ class TestModels(TestCase):
     def test_equipment_str(self):
         self.assertEqual(
             str(self.equipment),
-            f"{self.equipment.name}({self.equipment.type.type}): "
+            f"{self.equipment.name}: "
             f"{self.equipment.description}"
         )
 
@@ -53,6 +53,6 @@ class TestModels(TestCase):
     def test_player_str(self):
         self.assertEqual(
             str(self.player),
-            (f"Player: {self.player.username}, race:{self.player.race.name}, "
+            (f"Player: {self.player.username}, "
              f"level: {self.player.level}, power: {self.player.power}")
         )
