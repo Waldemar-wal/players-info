@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 
@@ -30,6 +31,10 @@ class Player(AbstractUser):
     def __str__(self):
         return (f"Player: {self.username}, "
                 f"level: {self.level}, power: {self.power}")
+
+    def get_absolute_url(self):
+        return reverse("players:player-detail", kwargs={"pk": self.pk})
+
 
 
 class Equipment(models.Model):
