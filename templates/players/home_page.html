@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to The Best MMORPG!</h1>
+
+    <p>The Best MMORPG has the following record counts:</p>
+    <ul>
+        <li><strong>Players:</strong> {{ num_players }}</li>
+        <li><strong>Races:</strong> {{ num_races }}</li>
+        <li><strong>Equipments:</strong> {{ num_equipments }}</li>
+        <li><strong>Equipment types:</strong> {{ num_equipment_types }}</li>
+
+    </ul>
+
+    <p>You have visited this page
+        {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+
+{% endblock %}

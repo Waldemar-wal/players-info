@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Equipment list
+    <a href="{% url 'players:equipment-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" class="btn btn-secondary" style="margin-left: 10px">
+  </form>
+  <br>
+  {% if equipment_list %}
+    <ul>
+      {% for equipment in equipment_list %}
+        <li>
+          <a href="{% url "players:equipment-detail" pk=equipment.id %} ">{{ equipment.id }}</a>
+          {{ equipment.name }} ({{ equipment.type.type }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no equipments in game</p>
+  {% endif %}
+{% endblock %}

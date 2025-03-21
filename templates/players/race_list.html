@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Race List
+    <a href="{% url 'players:race-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" class="btn btn-secondary" style="margin-left: 10px">
+  </form>
+  <br>
+  {% if race_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for race in race_list %}
+        <tr>
+          <td>
+              {{ race.name }}
+          </td>
+          <td>
+              <a href="{% url 'players:race-update' pk=race.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'players:race-delete' pk=race.id %}">
+                Delete
+              </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no race in the game.</p>
+  {% endif %}
+{% endblock %}

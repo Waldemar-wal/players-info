@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ equipment.name }}
+    <a href="{% url 'players:equipment-delete' pk=equipment.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'players:equipment-update' pk=equipment.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+  </h1>
+  <p>Equipment type: ({{ equipment.type.type }})</p>
+  <h1>
+    Players:
+
+    {% if equipment in user.equipments.all %}
+      <a href="{% url 'players:toggle-equipment-assign' pk=equipment.id %}" class="btn btn-danger link-to-page">
+        Delete me from this equipment
+      </a>
+    {% else %}
+      <a href="{% url 'players:toggle-equipment-assign' pk=equipment.id %}" class="btn btn-success link-to-page">
+        Assign me from this equipment
+      </a>
+    {% endif %}
+
+  </h1>
+  <hr>
+  <ul>
+    {% for player in equipment.player.all %}
+      <li>{{ player.username }} ({{ player.race }} {{ player.level }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

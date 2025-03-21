@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h1>
+      Player List
+      <a href="{% url 'players:player-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" class="btn btn-secondary" style="margin-left: 10px">
+  </form>
+  <br>
+    {% if player_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Race</th>
+        <th>Level</th>
+        <th>Power</th>
+      </tr>
+    {% for player in player_list %}
+      <tr>
+        <td>{{ player.id }}</td>
+        <td><a href="{{ player.get_absolute_url }}">{{ player.username }} {% if user == player %} (Me){% endif %}</a></td>
+        <td>{{ player.race.name }}</td>
+        <td>{{ player.level }}</td>
+        <td>{{ player.power }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no players in the game.</p>
+    {% endif %}
+{% endblock %}
