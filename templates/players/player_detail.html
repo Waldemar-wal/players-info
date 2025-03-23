@@ -1,33 +1,49 @@
-{% extends "base.html" %}
+{% extends 'layouts/base-presentation.html' %}
 
 {% block content %}
-  <h1>
-    Username: {{ player.username }}
-    <a href="{% url 'players:player-delete' pk=player.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
+  <header class="header-2">
+    <div class="page-header section-height-100  relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-player.png')">
+      <div class="container">
+        <div class="row">
+          <div class="detail-txt">
+            <h1 class="log-txt">
+              Username: {{ player.username }}
+              <a href="{% url 'players:player-delete' pk=player.id %}" class="btn btn-danger link-to-page">
+                Delete
+              </a>
 
-    <a href="{% url 'players:player-update' pk=player.id %}" class="btn btn-secondary link-to-page">
-      Update player`s information
-    </a>
-  </h1>
+              <a href="{% url 'players:player-update' pk=player.id %}" class="btn btn-secondary link-to-page">
+                Update player`s information
+              </a>
+            </h1>
 
-  <p><strong>Race:</strong> {{ player.race.name }}</p>
-  <p><strong>Level:</strong> {{ player.level }}</p>
-  <p><strong>Power:</strong> {{ player.power }}</p>
-  <p><strong>Active status:</strong> {{ player.is_active }}</p>
+            <p class="text-white"><strong>Race:</strong> {{ player.race.name }}</p>
+            <p class="text-white"><strong>Level:</strong> {{ player.level }}</p>
+            <p class="text-white"><strong>Power:</strong> {{ player.power }}</p>
+            <p  class="text-white"><strong>Active status:</strong> {{ player.is_active }}</p>
 
-  <div class="ml-3">
-    <h4>Equipment</h4>
+            <div class="ml-3">
+              <h4 class="text-white">Equipment</h4>
 
-    {% for equipment in player.equipments.all %}
-        <hr>
-        <p><strong>name:</strong> {{ equipment.name }}</p>
-        <p><strong>Equipment type:</strong> {{ equipment.type.type }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{equipment.id}}</p>
+              {% for equipment in player.equipments.all %}
+                  <hr>
+                  <p class="text-white"><strong>name:</strong> {{ equipment.name }}</p>
+                  <p class="text-white"><strong>Equipment type:</strong> {{ equipment.type.type }}</p>
+                  <p class="text-white"><strong>Id:</strong> {{equipment.id}}</p>
 
-    {% empty %}
-      <p>No equipments!</p>
-    {% endfor %}
-  </div>
+              {% empty %}
+                <p>No equipments!</p>
+              {% endfor %}
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
 {% endblock %}

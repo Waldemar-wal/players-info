@@ -205,7 +205,7 @@ class PlayerDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Player.objects.all().prefetch_related("equipments__type")
 
 
-class PlayerCreateView(LoginRequiredMixin, generic.CreateView):
+class PlayerCreateView(generic.CreateView):
     model = Player
     form_class = PlayerCreationForm
 
