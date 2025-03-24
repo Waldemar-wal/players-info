@@ -52,7 +52,9 @@ class EquipmentTypeListView(LoginRequiredMixin, generic.ListView):
         context["search_form"] = EquipmentTypeNameSearchForm()
         type = self.request.GET.get("type", "")
 
-        context["search_form"] = EquipmentTypeNameSearchForm(initial={"type": type})
+        context["search_form"] = EquipmentTypeNameSearchForm(
+            initial={"type": type}
+        )
         return context
 
     def get_queryset(self):
@@ -138,7 +140,9 @@ class EquipmentListView(LoginRequiredMixin, generic.ListView):
         context["search_form"] = EquipmentNameSearchForm()
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = EquipmentNameSearchForm(initial={"name": name})
+        context["search_form"] = EquipmentNameSearchForm(
+            initial={"name": name}
+        )
         return context
 
     def get_queryset(self):
@@ -185,7 +189,9 @@ class PlayerListView(LoginRequiredMixin, generic.ListView):
         context["search_form"] = PlayerUsernameSearchForm()
         username = self.request.GET.get("Username", "")
 
-        context["search_form"] = PlayerUsernameSearchForm(initial={"username": username})
+        context["search_form"] = PlayerUsernameSearchForm(
+            initial={"username": username}
+        )
         return context
 
     def get_queryset(self):
@@ -230,4 +236,6 @@ def toggle_assign_to_equipment(request, pk):
         player.equipments.remove(pk)
     else:
         player.equipments.add(pk)
-    return HttpResponseRedirect(reverse_lazy("players:equipment-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("players:equipment-detail", args=[pk])
+    )

@@ -26,7 +26,7 @@ class PlayerCreationForm(UserCreationForm):
             "power",
         )
 
-    def clean_race_level_power(self):  # this logic is optional, but possible
+    def clean_race_level_power(self):
         return validate_race_level_power(
             self.cleaned_data["race"],
             self.cleaned_data["level"],

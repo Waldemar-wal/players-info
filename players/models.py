@@ -22,7 +22,9 @@ class EquipmentType(models.Model):
 class Player(AbstractUser):
     level = models.IntegerField(default=1)
     power = models.IntegerField(default=0)
-    race = models.ForeignKey(Race, on_delete=models.CASCADE, blank=True, null=True)
+    race = models.ForeignKey(
+        Race, on_delete=models.CASCADE, blank=True, null=True
+    )
 
     class Meta:
         verbose_name = "player"
