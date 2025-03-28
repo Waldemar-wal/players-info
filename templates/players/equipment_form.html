@@ -1,0 +1,26 @@
+{% extends 'layouts/base-presentation.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <header class="header-2">
+    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-equipment.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto ">
+            <h1 class="text-white">{{ object|yesno:"Update,Create" }} equipment</h1>
+            <form class="text-white" action="" method="post" novalidate>
+              {% csrf_token %}
+              {{ form|crispy }}
+
+              <input type="submit" value="Submit" class="btn btn-primary">
+              <button class="btn btn-secondary ml-1" onclick="window.history.back();">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+{% endblock %}
