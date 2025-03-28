@@ -3,7 +3,7 @@
 
 {% block content %}
   <header class="header-2">
-    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-player.png')">
+    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-player.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
@@ -29,11 +29,11 @@
               </tr>
             {% for player in player_list %}
               <tr>
-                <td class="log-txt">{{ player.id }}</td>
-                <td class="log-txt"><a href="{{ player.get_absolute_url }}">{{ player.username }} {% if user == player %} (Me){% endif %}</a></td>
-                <td class="log-txt">{{ player.race.name }}</td>
-                <td class="log-txt">{{ player.level }}</td>
-                <td class="log-txt">{{ player.power }}</td>
+                <td class="text-white">{{ player.id }}</td>
+                <td class="text-white"><a href="{{ player.get_absolute_url }}">{{ player.username }} {% if user == player %} (Me){% endif %}</a></td>
+                <td class="text-white">{{ player.race.name }}</td>
+                <td class="text-white">{{ player.level }}</td>
+                <td class="text-white">{{ player.power }}</td>
               </tr>
             {% endfor %}
 

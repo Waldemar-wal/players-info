@@ -3,7 +3,7 @@
 
 {% block content %}
   <header class="header-2">
-    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-race.png')">
+    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-race.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto">
@@ -21,22 +21,22 @@
             {% if race_list %}
               <table class="table">
                 <tr>
-                  <th class="log-txt">Name</th>
+                  <th class="text-white font-weight-bold">Name</th>
                   <th class="text-white font-weight-bold">Update</th>
                   <th class="text-white font-weight-bold">Delete</th>
                 </tr>
 
                 {% for race in race_list %}
                   <tr>
-                    <td class="log-txt">
+                    <td class="text-white">
                         {{ race.name }}
                     </td>
-                    <td>
-                        <a href="{% url 'players:race-update' pk=race.id %}">
+                    <td class="text-white">
+                        <a href="{% url 'players:race-update' pk=race.id %}" class="btn-outline-primary">
                           Update
                         </a>
                       </td>
-                      <td>
+                      <td class="text-white">
                         <a style="color: red"
                           href="{% url 'players:race-delete' pk=race.id %}">
                           Delete
@@ -47,7 +47,7 @@
               </table>
 
             {% else %}
-                <p>There are no race in the game.</p>
+                <p class="text-white">There are no race in the game.</p>
             {% endif %}
           </div>
         </div>

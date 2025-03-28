@@ -33,7 +33,6 @@ def home_page(request):
         "num_players": num_players,
         "num_races": num_races,
         "num_equipments": num_equipments,
-        "num_equipment_types": num_equipment_types,
         "num_visits": num_visits + 1,
     }
 
