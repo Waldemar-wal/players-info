@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 from players.models import Player, Equipment, Race
 
@@ -51,7 +53,7 @@ def validate_race_level_power(
     race,
     level,
     power,
-):  # regex validation is also possible here
+):
     if level < 1:
         raise ValidationError("Level must be greater than 0")
     if power < 1:

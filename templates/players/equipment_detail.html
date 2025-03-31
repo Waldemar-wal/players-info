@@ -21,13 +21,19 @@
               Players:
 
               {% if equipment in user.equipments.all %}
-                <a href="{% url 'players:toggle-equipment-assign' pk=equipment.id %}" class="btn btn-danger link-to-page">
-                  Delete me from this equipment
-                </a>
+                <form action="" method="post" href="{% url 'players:toggle-assign-to-equipment' pk=equipment.id %}" class="btn btn-danger link-to-page">
+                  {% csrf_token %}
+                  <button type="submit" name="delete" value="delete">
+                    Delete me from this equipmente
+                  </button>
+                </form>
               {% else %}
-                <a href="{% url 'players:toggle-equipment-assign' pk=equipment.id %}" class="btn btn-success link-to-page">
-                  Assign me from this equipment
-                </a>
+                <form action="" method="post" href="{% url 'players:toggle-assign-to-equipment' pk=equipment.id %}" class="btn btn-success  link-to-page">
+                  {% csrf_token %}
+                  <button type="submit" name="assign" value="assign">
+                    Assign me from this equipment
+                  </button>
+                </form>
               {% endif %}
 
             </h1>

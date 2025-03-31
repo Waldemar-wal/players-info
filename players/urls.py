@@ -7,7 +7,6 @@ from .views import (
     EquipmentCreateView,
     EquipmentUpdateView,
     EquipmentDeleteView,
-    toggle_assign_to_equipment,
     PlayerListView,
     PlayerDetailView,
     PlayerCreateView,
@@ -21,6 +20,8 @@ from .views import (
     RaceUpdateView,
     RaceCreateView,
     RaceListView,
+    # toggle_assign_to_equipment,
+    AssignToEquipment,
 )
 
 
@@ -91,8 +92,8 @@ urlpatterns = [
     ),
     path(
         "equipments/<int:pk>/toggle-assign/",
-        toggle_assign_to_equipment,
-        name="toggle-equipment-assign",
+        AssignToEquipment.as_view(),
+        name="toggle-assign-to-equipment",
     ),
     path("players/", PlayerListView.as_view(), name="player-list"),
     path(

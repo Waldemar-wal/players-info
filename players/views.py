@@ -12,7 +12,7 @@ from .forms import (
     EquipmentNameSearchForm,
     PlayerUsernameSearchForm,
     RaceNameSearchForm,
-    EquipmentTypeNameSearchForm
+    EquipmentTypeNameSearchForm,
 )
 from .models import Player, Equipment, EquipmentType, Race
 
@@ -24,7 +24,6 @@ def home_page(request):
     num_players = Player.objects.count()
     num_races = Race.objects.count()
     num_equipments = Equipment.objects.count()
-    num_equipment_types = EquipmentType.objects.count()
 
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -226,15 +225,30 @@ class PlayerDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("")
 
 
-@login_required
-def toggle_assign_to_equipment(request, pk):
-    player = Player.objects.get(id=request.user.id)
-    if (
-        Equipment.objects.get(id=pk) in player.equipments.all()
-    ):  # probably could check if car exists
-        player.equipments.remove(pk)
-    else:
-        player.equipments.add(pk)
-    return HttpResponseRedirect(
-        reverse_lazy("players:equipment-detail", args=[pk])
-    )
+# @login_required
+# def toggle_assign_to_equipment(request, pk):
+#     player = Player.objects.get(id=request.user.id)
+#     if (
+#         Equipment.objects.get(id=pk) in player.equipments.all()
+#     ):
+#         player.equipments.remove(pk)
+#     else:
+#         player.equipments.add(pk)
+#     return HttpResponseRedirect(
+#         reverse_lazy("players:equipment-detail", args=[pk])
+#     )
+
+class AssignToEquipment(generic.View):
+    def post(self,  request, pk):
+        player = Player.objects.get(id=request.user.id)
+        equipment = Equipment.objects.get(id=pk)
+        if (
+                equipment in player.equipments.all()
+        ):
+            player.equipments.remove(equipment)
+        else:
+            player.equipments.add(equipment)
+        return HttpResponseRedirect(
+            reverse_lazy("players:equipment-detail", args=[pk])
+        )
+
