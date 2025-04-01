@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import (
+from players.forms import (
     PlayerCreationForm,
     PlayerPowerAndLevelUpdateForm,
     EquipmentForm,
@@ -14,7 +14,7 @@ from .forms import (
     RaceNameSearchForm,
     EquipmentTypeNameSearchForm,
 )
-from .models import Player, Equipment, EquipmentType, Race
+from players.models import Player, Equipment, EquipmentType, Race
 
 
 @login_required
@@ -225,19 +225,6 @@ class PlayerDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("")
 
 
-# @login_required
-# def toggle_assign_to_equipment(request, pk):
-#     player = Player.objects.get(id=request.user.id)
-#     if (
-#         Equipment.objects.get(id=pk) in player.equipments.all()
-#     ):
-#         player.equipments.remove(pk)
-#     else:
-#         player.equipments.add(pk)
-#     return HttpResponseRedirect(
-#         reverse_lazy("players:equipment-detail", args=[pk])
-#     )
-
 class AssignToEquipment(generic.View):
     def post(self,  request, pk):
         player = get_object_or_404(Player, id=request.user.id)
@@ -251,4 +238,3 @@ class AssignToEquipment(generic.View):
         return HttpResponseRedirect(
             reverse("players:equipment-detail", args=[pk])
         )
-
