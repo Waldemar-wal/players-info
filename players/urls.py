@@ -71,6 +71,11 @@ urlpatterns = [
     ),
     path("equipments/", EquipmentListView.as_view(), name="equipment-list"),
     path(
+        "equipments/<int:pk>/toggle-assign/",
+        AssignToEquipment.as_view(),
+        name="toggle-assign-to-equipment",
+    ),
+    path(
         "equipments/<int:pk>/",
         EquipmentDetailView.as_view(),
         name="equipment-detail"
@@ -89,11 +94,6 @@ urlpatterns = [
         "equipments/<int:pk>/delete/",
         EquipmentDeleteView.as_view(),
         name="equipment-delete"
-    ),
-    path(
-        "equipments/<int:pk>/toggle-assign/",
-        AssignToEquipment.as_view(),
-        name="toggle-assign-to-equipment",
     ),
     path("players/", PlayerListView.as_view(), name="player-list"),
     path(

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -240,8 +240,8 @@ class PlayerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class AssignToEquipment(generic.View):
     def post(self,  request, pk):
-        player = Player.objects.get(id=request.user.id)
-        equipment = Equipment.objects.get(id=pk)
+        player = get_object_or_404(Player, id=request.user.id)
+        equipment = get_object_or_404(Equipment, id=pk)
         if (
                 equipment in player.equipments.all()
         ):
@@ -249,6 +249,6 @@ class AssignToEquipment(generic.View):
         else:
             player.equipments.add(equipment)
         return HttpResponseRedirect(
-            reverse_lazy("players:equipment-detail", args=[pk])
+            reverse("players:equipment-detail", args=[pk])
         )
 
