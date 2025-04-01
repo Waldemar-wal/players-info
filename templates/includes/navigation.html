@@ -1,0 +1,58 @@
+
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+          <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-sm-3" 
+               href="{% url 'players:home_page' %}" rel="tooltip" title="Designed and Coded by Waldemar" data-placement="bottom">
+              The Best MMORPG
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+              <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" href="{% url 'players:player-list' %}">
+                    Players
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" href="{% url 'players:race-list' %}">
+                    Races
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" href="{% url 'players:equipment-list' %}">
+                    Equipments
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" href="{% url 'players:equipment-type-list' %}">
+                    Equipment types
+                  </a>
+                </li>
+                {% if user.is_authenticated %}
+                  <li class="nav-item ms-lg-auto">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+                  <li class="nav-item ms-lg-auto">
+                    <form action="{% url 'logout' %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
+                  </li>
+                {% else %}
+                  <li class="nav-item ms-lg-auto"><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
