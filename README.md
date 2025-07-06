@@ -60,4 +60,5 @@ Log in with the superuser credentials to manage all entities through the Django 
 
    - User authentication and profiles
 
-
+Link to Web service:
+https://players-info.onrender.com
