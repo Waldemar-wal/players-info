@@ -62,3 +62,8 @@ Log in with the superuser credentials to manage all entities through the Django 
 
 Link to Web service:
 https://players-info.onrender.com
+
+Test user:
+
+    login: user
+    password: user12345
