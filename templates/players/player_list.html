@@ -1,0 +1,53 @@
+{% extends 'layouts/base-presentation.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <header class="header-2">
+    <div class="page-header section-height-100 relative" style="background-image: url('{{ ASSETS_ROOT }}/img/curved-images/back-player.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto">
+            <h1 class="text-white font-weight-bold">
+              Player List
+              <a href="{% url 'players:player-create' %}" class="btn btn-primary link-to-page">
+                Create
+              </a>
+            </h1>
+          <form action="" method="get" class="form-inline">
+            {{ search_form|crispy }}
+            <input value="Search" type="submit" class="btn btn-secondary" style="margin-left: 10px">
+          </form>
+          <br>
+            {% if player_list %}
+            <table class="table table-hover table-borderless">
+              <tr>
+                <th class="text-white">ID</th>
+                <th class="text-white">Username</th>
+                <th class="text-white">Race</th>
+                <th class="text-white">Level</th>
+                <th class="text-white">Power</th>
+              </tr>
+            {% for player in player_list %}
+              <tr>
+                <td class="text-white">{{ player.id }}</td>
+                <td class="text-white"><a href="{{ player.get_absolute_url }}">{{ player.username }} {% if user == player %} (Me){% endif %}</a></td>
+                <td class="text-white">{{ player.race.name }}</td>
+                <td class="text-white">{{ player.level }}</td>
+                <td class="text-white">{{ player.power }}</td>
+              </tr>
+            {% endfor %}
+
+            </table>
+            {% else %}
+              <p>There are no players in the game.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+{% endblock %}
